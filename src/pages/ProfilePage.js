@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { apiWithErrorHandling } from '../services/api';
-import { useAuth } from '../context/AuthContext';
+import { apiWithErrorHandling } from '../services/api.js';
+import { useAuth } from '../context/AuthContext.js';
 import '../styles/profile.css';
 
 const ProfilePage = () => {
@@ -14,10 +14,9 @@ const ProfilePage = () => {
   const [error, setError] = useState('');
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
-    name: '',
+    nome: '',
     email: '',
     perfilInstagram: '',
-    senha: ''
   });
   const [updateSuccess, setUpdateSuccess] = useState(false);
 
@@ -27,10 +26,9 @@ const ProfilePage = () => {
         const data = await apiWithErrorHandling.influencer.getById(id);
         setInfluencer(data);
         setFormData({
-          name: data.name,
+          nome: data.nome,
           email: data.email,
           perfilInstagram: data.perfilInstagram,
-          senha: '' // Não exibimos a senha por segurança
         });
         setLoading(false);
       } catch (err) {
@@ -49,8 +47,8 @@ const ProfilePage = () => {
   }, [id, logout, navigate]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { nome, value } = e.target;
+    setFormData(prev => ({ ...prev, [nome]: value }));
   };
 
   const handleSubmit = async (e) => {
@@ -59,10 +57,9 @@ const ProfilePage = () => {
 
     // Só enviar campos não vazios
     const updateData = {};
-    if (formData.name) updateData.name = formData.name;
+    if (formData.nome) updateData.nome = formData.nome;
     if (formData.email) updateData.email = formData.email;
     if (formData.perfilInstagram) updateData.perfilInstagram = formData.perfilInstagram;
-    if (formData.senha) updateData.senha = formData.senha;
 
     try {
       await apiWithErrorHandling.influencer.update(id, updateData);
@@ -153,12 +150,12 @@ const ProfilePage = () => {
               
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <label htmlFor="name">Nome</label>
+                  <label htmlFor="nome">Nome</label>
                   <input
                     type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
+                    id="nome"
+                    nome="nome"
+                    value={formData.nome}
                     onChange={handleChange}
                     required
                   />
@@ -169,7 +166,7 @@ const ProfilePage = () => {
                   <input
                     type="email"
                     id="email"
-                    name="email"
+                    nome="email"
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -181,7 +178,7 @@ const ProfilePage = () => {
                   <input
                     type="text"
                     id="perfilInstagram"
-                    name="perfilInstagram"
+                    nome="perfilInstagram"
                     value={formData.perfilInstagram}
                     onChange={handleChange}
                     required
@@ -193,7 +190,7 @@ const ProfilePage = () => {
                   <input
                     type="password"
                     id="senha"
-                    name="senha"
+                    nome="senha"
                     value={formData.senha}
                     onChange={handleChange}
                     placeholder="••••••••"

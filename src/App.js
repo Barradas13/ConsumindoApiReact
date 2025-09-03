@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { AuthProvider, useAuth } from './context/AuthContext';
-import HomePage from './pages/HomePage';
-import InfluencersPage from './pages/InfluencersPage'; // Nova página
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import ProfilePage from './pages/ProfilePage';
-import SearchPage from './pages/SearchPage';
+import { AuthProvider, useAuth } from './context/AuthContext.js';
+import HomePage from './pages/HomePage.js';
+import InfluencersPage from './pages/InfluencersPage.js'; // Nova página
+import LoginPage from './pages/LoginPage.js';
+import RegisterPage from './pages/RegisterPage.js';
+import ProfilePage from './pages/ProfilePage.js';
+import SearchPage from './pages/SearchPage.js';
 import './styles/global.css';
 
 // Componente para rotas protegidas

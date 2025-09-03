@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useAuth } from '../context/AuthContext.js';
 import '../styles/auth.css';
 
 const RegisterPage = () => {
@@ -42,7 +42,7 @@ const RegisterPage = () => {
       
       // Dados para API
       const userData = {
-        name: formData.name,
+        nome: formData.name,
         email: formData.email,
         perfilInstagram: formData.perfilInstagram,
         senha: formData.senha
@@ -56,7 +56,7 @@ const RegisterPage = () => {
       
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.message || 'Erro ao cadastrar');
+      setError(err.response?.data?.message || 'Erro ao cadastrar' + err);
     } finally {
       setIsLoading(false);
     }

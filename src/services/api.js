@@ -60,12 +60,22 @@ const influencerService = {
     }
   },
   
-  create: async (influencer) => {
+  register: async (influencer) => {
     try {
       const response = await api.post('/influencers', influencer);
       return response.data;
     } catch (error) {
       console.error('Erro ao criar influenciador:', error);
+      throw error;
+    }
+  },
+
+  login: async (influencer_email_password) => {
+    try {
+      const response = await api.post('/influencers/login', influencer_email_password);
+      return response.data;
+    } catch (error) {
+      console.error('Erro ao logar influenciador:', error);
       throw error;
     }
   },
@@ -100,8 +110,8 @@ export const getById = async (id) => {
   return influencerService.getById(id);
 };
 
-export const create = async (influencer) => {
-  return influencerService.create(influencer);
+export const register = async (influencer) => {
+  return influencerService.register(influencer);
 };
 
 export const update = async (id, influencer) => {

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAll } from '../services/api';
-import InfluencerCard from '../components/search/InfluencerCard';
-import { useAuth } from '../context/AuthContext';
+import { getAll } from '../services/api.js';
+import InfluencerCard from '../components/search/InfluencerCard.js';
+import { useAuth } from '../context/AuthContext.js';
 import '../styles/influencers.css';
 
 const InfluencersPage = () => {
